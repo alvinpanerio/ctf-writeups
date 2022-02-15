@@ -11,7 +11,7 @@ Basically, A Local File Inclusion
 
 ### **Solution**
 
-Start to deploy the machine.
+Deploy the machine.
   
 <p align="center">
   <img src="https://user-images.githubusercontent.com/93600181/154020246-97d2f0d3-e36d-49cc-80a4-e91b7dac7e7b.png"
