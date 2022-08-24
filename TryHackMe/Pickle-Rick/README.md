@@ -6,60 +6,80 @@
 
 ### **Solution**
 
-Deploy the machine, and get connected to your OpenVPN.
-First, Let's do some sort of reconnaissance and scanning on the given URL/IP address using NMAP
+Deploy the machine, and get connected to OpenVPN.
+First, Let's do reconnaissance and scanning on the given URL/IP address using NMAP
   
 ```
-sudo nmap -sS -sV 10.10.193.104
+sudo nmap -sS -sV <IP_ADDRESS>
 ```
   
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/93600181/158535573-c695613b-c114-482f-9b4f-8963430c673e.png"
+  <img src="https://user-images.githubusercontent.com/93600181/158535573-c695613b-c114-482f-9b4f-8963430c673e.png">
 </p>
   
-The given IP address has the open ports of 22 (ssh) and 80 (http).
-So let's take a look in the browser on how the website works.
+The given IP address has open ports, 22 (ssh) and 80 (http).
+So, let's take a look in the browser on how the website works.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/93600181/158536073-97bb0471-5ec1-4357-8d1b-911e3908684e.png"
+  <img src="https://user-images.githubusercontent.com/93600181/158536073-97bb0471-5ec1-4357-8d1b-911e3908684e.png">
+</p>
+
+<p align="center">
+  A static webpage
 </p>
   
-A static webpage! Now right click the webpage to view the page source.
+Now, right click the webpage to view the page source.
   
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/93600181/158536430-ebf22883-4662-4637-aaac-98df5ec0c253.png"
+  <img src="https://user-images.githubusercontent.com/93600181/158536430-ebf22883-4662-4637-aaac-98df5ec0c253.png">
 </p>
   
-On the line 28-34 (the photo was cut), there is a comment that says, R1ckRul3s is the username (Note this part).
-Now, we do not have any resources to explore. Next step will be, directory/file bruteforcing using GoBuster on the given IP address.
+On the line 28-34 (the photo was cut), there is a comment that says, R1ckRul3s is the username (Take note of this part).
+Now, we don't have any resources to explore. Next step will be, directory/file bruteforcing using GoBuster on the given IP address.
 Before I proceed, I modified 'common.txt' wordlist from dirb because it has no *.php words. This is the wordlist --> <a href="https://github.com/alvinpanerio/CTF-writeups/blob/main/TryHackMe/Pickle-Rick/wordlist.txt">wordlist.txt</a>
 
 Now, run GoBuster
   
 ```
-gobuster dir -e -t 10 -u 10-10-193-104.p.thmlabs.com -w wordlist.txt
+gobuster dir -e -t 10 -u <IP_ADDRESS/WEBSITE_URL> -w wordlist.txt
 ```
   
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/93600181/158537549-906e5ccf-d871-4af8-af52-fc4e29f28030.png"
+  <img src="https://user-images.githubusercontent.com/93600181/158537549-906e5ccf-d871-4af8-af52-fc4e29f28030.png">
 </p>
-  
-We can see that there are 2 new files that has 200 status code and 1 directory for status 301. Now, visit the /assets directory.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/93600181/158537895-573ae483-8b2b-4da8-950a-834b9d6495ef.png"
+  Gobuster result
+</p>
+  
+We can see that there are 2 new files that has status code of 200 and 1 directory for status 301. Now, visit the /assets directory.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/93600181/158537895-573ae483-8b2b-4da8-950a-834b9d6495ef.png">
+</p>
+
+<p align="center">
+  /assets
 </p>
   
 Nothing interesting here, visit /robots.txt file
   
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/93600181/158537965-504cfd2d-9431-4ceb-94fd-a22b89c28c5e.png"
+  <img src="https://user-images.githubusercontent.com/93600181/158537965-504cfd2d-9431-4ceb-94fd-a22b89c28c5e.png">
 </p>
-  
-We found some sort of string that has to do later (Note this part), let's move to the last one /login.php file
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/93600181/158538264-6b772211-57e0-4b70-8cf2-5e03f9f91f41.png"
+  /robots.txt
+</p>
+  
+We found some sort of string that is important later (Take note of this part), let's move to the last one, /login.php file
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/93600181/158538264-6b772211-57e0-4b70-8cf2-5e03f9f91f41.png">
+</p>
+
+<p align="center">
+  /login.php
 </p>
   
 Now, we reach a portal login page.
@@ -72,10 +92,14 @@ Password: Wubbalubbadubdub
 ```
   
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/93600181/158540595-8da400e5-9f8d-4502-83a9-2ae6d2e00f50.png"
+  <img src="https://user-images.githubusercontent.com/93600181/158540595-8da400e5-9f8d-4502-83a9-2ae6d2e00f50.png">
+</p>
+
+<p align="center">
+  /portal.php
 </p>
   
-We're log in to the portal account and we can see that we can perform some commands in the field. Try some commands like whoami, pwd and ls.
+We're logged in to the portal account and we can see that we can perform some commands on the field. Try some commands like whoami, pwd and ls.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/93600181/158541102-9d96c971-909c-449d-83f5-cc15236716bf.png" align="center">
@@ -106,9 +130,9 @@ We can't use 'cat, head, nano' commands etc. on the field because it performs th
   <img src="https://user-images.githubusercontent.com/93600181/158542900-11fda8e5-232a-41b0-8a2f-9d2f02ffaa50.png">
 </p>
   
-I try to decode it using base64 many times to get the "rabbit hole" word, it does not make sense.
+I try to decode it many times using base64 to get the "rabbit hole" word, it does not make sense.
 
-So get back to previous issue, I try the alternative command, which is 'strings' command to get the value of 'Sup3rS3cretPickl3Ingred.txt'.
+So, get back to previous issue, I try the alternative command, which is 'strings' command to get the value of 'Sup3rS3cretPickl3Ingred.txt'.
 
 ```
 strings Sup3rS3cretPickl3Ingred.txt
@@ -168,7 +192,7 @@ sudo -l
   <img src="https://user-images.githubusercontent.com/93600181/158544557-810ed831-1c2b-407c-9096-9b31a45d320a.png">
 </p>
 
-It does not requires password/permissions when using sudo command. So go to /root directory,
+It does not require password/permissions when using sudo command. So go to /root directory,
  
 ```
 sudo ls /root
