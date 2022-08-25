@@ -568,15 +568,15 @@ cd /etc/bandit_pass/bandit14
 
 ---
   
-## *Bandit Level 14 → Level 15*
-### *Level Goal*
+## **Bandit Level 14 → Level 15**
+### **Level Goal**
 
 The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
 
-### *Commands you may need to solve this level* ###
+### **Commands you may need to solve this level** ###
 ssh, telnet, nc, openssl, s_client, nmap
 
-### *Solution*
+### **Solution**
 - Connect to the localhost port 30000 using "nc" command
 ```
 nc localhost 30000
@@ -587,24 +587,24 @@ nc localhost 30000
 ```
 - It will display the flag automatically
 
-### *Flag/Password*
+### **Flag/Password**
 ```
 BfMYroe26WYalil77FoDi9qh59eK5xNr
 ```
   
 ---
   
-## *Bandit Level 15 → Level 16*
-### *Level Goal*
+## **Bandit Level 15 → Level 16**
+### **Level Goal**
 
 The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption.
 
 Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…
 
-### *Commands you may need to solve this level* ###
+### **Commands you may need to solve this level** ###
 ssh, telnet, nc, openssl, s_client, nmap
 
-### *Solution*
+### **Solution**
 - Connect to the localhost port 30001 using "openssl" command
 ```
 openssl s_client -connect localhost:30001
@@ -619,22 +619,22 @@ BfMYroe26WYalil77FoDi9qh59eK5xNr
   <img src="https://user-images.githubusercontent.com/93600181/186377472-c8b124bd-0059-46e6-af68-08896c4e55b1.png">
 </p>
 
-### *Flag/Password*
+### **Flag/Password**
 ```
 cluFn7wTiGryunymYOu4RcffSxQluehd
 ```
   
 ---
   
-## *Bandit Level 16 → Level 17*
-### *Level Goal*
+## **Bandit Level 16 → Level 17**
+### **Level Goal**
 
 The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
 
-### *Commands you may need to solve this level* ###
+### **Commands you may need to solve this level** ###
 ssh, telnet, nc, openssl, s_client, nmap
 
-### *Solution*
+### **Solution**
 - Find open ports between 31000 to 32000 on localhost using "nmap" command
 ```
 nmap localhost -p 31000-32000
@@ -673,24 +673,24 @@ cat /etc/bandit_pass/bandit17
   <img src="https://user-images.githubusercontent.com/93600181/186383839-8b608b3e-637d-4f29-a5a4-48ec94d79215.png">
 </p>
 
-### *Flag/Password*
+### **Flag/Password**
 ```
 xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
 ```
   
 ---
   
-## *Bandit Level 17 → Level 18*
-### *Level Goal*
+## **Bandit Level 17 → Level 18**
+### **Level Goal**
 
 There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
 
 NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19
 
-### *Commands you may need to solve this level* ###
+### **Commands you may need to solve this level** ###
 cat, grep, ls, diff
 
-### *Solution*
+### **Solution**
 - We will be using "diff command" to view and differentiate the two files
 ```
 diff --normal passwords.new passwords.old
@@ -702,22 +702,22 @@ diff --normal passwords.new passwords.old
 
 - The flag is on the first line
 
-### *Flag/Password*
+### **Flag/Password**
 ```
 kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
 ```
   
 ---
   
-## *Bandit Level 18 → Level 19*
-### *Level Goal*
+## **Bandit Level 18 → Level 19**
+### **Level Goal**
 
 The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.
 
-### *Commands you may need to solve this level* ###
+### **Commands you may need to solve this level** ###
 ssh, ls, cat
 
-### *Solution*
+### **Solution**
 - We can't connect to this level by normal logging in the credential using ssh
 - Use the "ssh" command with the flag "-t" to allow us using the terminal and spawn a bash shell
 ```
@@ -747,22 +747,22 @@ ls
 cat readme
 ```
 
-### *Flag/Password*
+### **Flag/Password**
 ```
 IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
 ```
   
 ---
   
-## *Bandit Level 19 → Level 20*
-### *Level Goal*
+## **Bandit Level 19 → Level 20**
+### **Level Goal**
 
 To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
 
-### *Commands you may need to solve this level* ###
+### **Commands you may need to solve this level** ###
 none
 
-### *Solution*
+### **Solution**
 - View the file named "bandit20-do", it will show random characters and a "Run a command as another user" phrase
 ```
 cat bandit20-do
@@ -800,23 +800,23 @@ cat bandit20-do
   <img src="https://user-images.githubusercontent.com/93600181/186396083-aa1b37d5-b766-4e6d-bdb0-b2c2f7964056.png">
 </p>
 
-### *Flag/Password*
+### **Flag/Password**
 ```
 GbKksEFF4yrVs6il55v6gwY5aVje5f0j
 ```
   
 ---
   
-## *Bandit Level 20 → Level 21*
-### *Level Goal*
+## **Bandit Level 20 → Level 21**
+### **Level Goal**
 
 There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
 
 NOTE: Try connecting to your own network daemon to see if it works as you think
-### *Commands you may need to solve this level* ###
+### **Commands you may need to solve this level** ###
 ssh, nc, cat, bash, screen, tmux, Unix ‘job control’ (bg, fg, jobs, &, CTRL-Z, …)
 
-### *Solution*
+### **Solution**
 - Check the file type of file named "suconnect"
 ```
 file suconnect 
@@ -876,7 +876,7 @@ GbKksEFF4yrVs6il55v6gwY5aVje5f0j
   <img src="https://user-images.githubusercontent.com/93600181/186444417-91f74583-fef1-4933-a3c6-b1dfede4118d.png">
 </p>
 
-### *Flag/Password*
+### **Flag/Password**
 ```
 gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
 ```
